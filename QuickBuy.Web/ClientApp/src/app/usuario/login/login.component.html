@@ -5,25 +5,38 @@
     <label for="inputEmail" class="sr-only">E-mail</label>
     <input type="email" id="inputEmail"
            name="email" placeholder="Informe o seu E-mail"
-           class="form-control mb-2" [(ngModel)]="usuario.email"
-           #email="ngModel" email required />
-    <div class="alert alert-danger" *ngIf="email.invalid && (email.dirty || email.touched)">
+           class="form-control mb-2"
+           [(ngModel)]="usuario.email"
+           #email="ngModel"
+           [ngClass]="{
+            'is-invalid':email.invalid && (email.dirty || email.touched),
+            'is-valid':email.valid && (email.dirty || email.touched)
+           }"
+           email
+           required />
+    <div class="invalid-feedback mb-2" *ngIf="email.invalid && (email.dirty || email.touched)">
       <div *ngIf="email.errors.required">
-        Email deve ser preenchido
+        Email é de preenchimento obrigatório
       </div>
       <div *ngIf="email.errors.email">
-        Email no formato invalido
+        Email no formato inválido
       </div>
     </div>
 
     <label for="inputSenha" class="sr-only">Senha</label>
     <input type="password" id="inputSenha"
            name="senha" placeholder="Senha"
-           class="form-control mb-2" [(ngModel)]="usuario.senha"
-           #senha="ngModel" required />
-    <div class="alert alert-danger" *ngIf="senha.invalid && (senha.dirty || senha.touched)">
+           class="form-control mb-2"
+           [(ngModel)]="usuario.senha"
+           #senha="ngModel"
+           [ngClass]="{
+            'is-invalid':senha.invalid && (senha.dirty || senha.touched),
+            'is-valid':senha.valid && (senha.dirty || senha.touched)
+           }"
+           required />
+    <div class="invalid-feedback mb-2" *ngIf="senha.invalid && (senha.dirty || senha.touched)">
       <div *ngIf="senha.errors.required">
-        Senha deve ser preenchida
+        Senha é de preenchimento obrigatório
       </div>
     </div>
 
